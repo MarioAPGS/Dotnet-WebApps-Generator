@@ -1,4 +1,4 @@
-﻿$name = "Cellarium"
+﻿$name = "InceptumApi"
 $logic = "Logic"
 $infra = "Infrastructure"
 $core = "Core"
