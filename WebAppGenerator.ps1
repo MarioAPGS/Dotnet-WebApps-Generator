@@ -8,7 +8,6 @@ $logicPr = "./" + $logic + "/" + $logic + ".csproj"
 $infraPr = "./" + $infra + "/" + $infra + ".csproj"
 $corePr = "./" + $core + "/" + $core + ".csproj"
 
-cd D:\PROYECTOS\WebApps\CliWebAppsCreator
 mkdir $name
 cd $name
 
