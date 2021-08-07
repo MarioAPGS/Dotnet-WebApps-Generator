@@ -32,7 +32,6 @@ rm ./$core/Class1.cs
 dotnet sln $name.sln add --in-root $corePr
 dotnet add $infraPr reference $corePr
 # Install nuget packages
-copy "..\Utils\log4net.config" ./$name
 dotnet add $corePr package Newtonsoft.Json
 dotnet add $corePr package log4net
 dotnet add $corePr package Microsoft.AspNetCore.Http.Abstractions
@@ -57,6 +56,8 @@ copy "..\Utils\Core" ./$core
 Copy-item -Force -Recurse -Verbose "..\Utils\Core" -Destination ./
 Copy-item -Force -Recurse -Verbose "..\Utils\Infrastructure" -Destination ./
 Copy-item -Force -Recurse -Verbose "..\Utils\Logic" -Destination ./
+# Copy log4net.config
+copy "..\Utils\log4net.config" ./$name
 # Configure Setup.cs
 $StartupPath = "./" + $name + "/" + "Startup.cs";
 (Get-Content "..\Utils\Startup.cs") | Set-Content $StartupPath
