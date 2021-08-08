@@ -44,20 +44,24 @@ dotnet add $infraPr package Microsoft.Extensions.Configuration.Json
 dotnet add $namePr package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 dotnet add $namePr package Microsoft.EntityFrameworkCore.Design
 dotnet add $namePr package Microsoft.Extensions.Logging.Log4Net.AspNetCore
+# Copy folder's structures
+copy "..\Utils\Core" ./$core
+Copy-item -Force -Recurse -Verbose "..\Utils\Core" -Destination ./
+Copy-item -Force -Recurse -Verbose "..\Utils\Infrastructure" -Destination ./
+Copy-item -Force -Recurse -Verbose "..\Utils\Logic" -Destination ./
 # Add DbContext
 copy "..\Utils\DbContext.cs" ./$infra
 $DbContextPath = "./" + $infra + "/" + "DbContext.cs";
 (Get-Content $DbContextPath).replace('$$$', $name) | Set-Content $DbContextPath
 $DbContextNewName = $name + "DbContext.cs"
 Rename-Item -Path $DbContextPath -NewName $DbContextNewName
-# Copy folder's structures
-copy "..\Utils\Core" ./$core
-Copy-item -Force -Recurse -Verbose "..\Utils\Core" -Destination ./
-Copy-item -Force -Recurse -Verbose "..\Utils\Infrastructure" -Destination ./
-Copy-item -Force -Recurse -Verbose "..\Utils\Logic" -Destination ./
 # Copy log4net.config
 copy "..\Utils\log4net.config" ./$name
 # Configure Setup.cs
 $StartupPath = "./" + $name + "/" + "Startup.cs";
 (Get-Content "..\Utils\Startup.cs") | Set-Content $StartupPath
 (Get-Content $StartupPath).replace('$$$', $name) | Set-Content $StartupPath
+# Configure appsettings.json
+$AppsettingsPath = "./" + $name + "/" + "appsettings.json";
+(Get-Content "..\Utils\appsettings.json") | Set-Content $AppsettingsPath
+(Get-Content $AppsettingsPath).replace('$$$', $name) | Set-Content $AppsettingsPath
