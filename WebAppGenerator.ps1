@@ -1,4 +1,4 @@
-﻿$name = "InceptumApi"
+﻿$name = "SecurityApi"
 $logic = "Logic"
 $infra = "Infrastructure"
 $core = "Core"
@@ -44,6 +44,8 @@ dotnet add $infraPr package Microsoft.Extensions.Configuration.Json
 dotnet add $namePr package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 dotnet add $namePr package Microsoft.EntityFrameworkCore.Design
 dotnet add $namePr package Microsoft.Extensions.Logging.Log4Net.AspNetCore
+dotnet add $namePr package Microsoft.AspNetCore.Mvc.NewtonsoftJson
+
 # Copy folder's structures
 copy "..\Utils\Core" ./$core
 Copy-item -Force -Recurse -Verbose "..\Utils\Core" -Destination ./
@@ -55,8 +57,9 @@ $DbContextPath = "./" + $infra + "/" + "DbContext.cs";
 (Get-Content $DbContextPath).replace('$$$', $name) | Set-Content $DbContextPath
 $DbContextNewName = $name + "DbContext.cs"
 Rename-Item -Path $DbContextPath -NewName $DbContextNewName
-# Copy log4net.config
+# Copy log4net.config and HeaderFilter
 copy "..\Utils\log4net.config" ./$name
+copy "..\Utils\HeaderFilter.cs" ./$name
 # Configure Setup.cs
 $StartupPath = "./" + $name + "/" + "Startup.cs";
 (Get-Content "..\Utils\Startup.cs") | Set-Content $StartupPath

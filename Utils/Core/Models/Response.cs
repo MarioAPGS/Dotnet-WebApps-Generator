@@ -59,7 +59,7 @@ namespace Core.Models
 
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public IEnumerable<TEntity> Data { get; internal set; }
-
+        [JsonConstructor]
         public Response(bool success, IEnumerable<TEntity> data, string message = null, HttpStatusCode code = HttpStatusCode.OK) : base(success, message, code)
         {
             Data = data;
