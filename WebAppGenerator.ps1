@@ -1,4 +1,4 @@
-﻿$name = "SecurityApi"
+﻿$name = "Eszenica"
 $logic = "Logic"
 $infra = "Infrastructure"
 $core = "Core"
@@ -12,7 +12,7 @@ mkdir $name
 cd $name
 
 # Create web api asp net
-dotnet new webapi --language "C#" -f "net5.0" --name $name
+dotnet new razor --language "C#" -f "net5.0" --name $name
 dotnet new sln 
 dotnet sln $name.sln add --in-root $namePr
 # Create Logic
