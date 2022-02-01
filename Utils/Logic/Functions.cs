@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using Type = Core.Inventario.Type;
 
 namespace Core.Models
 {
@@ -51,6 +53,8 @@ namespace Core.Models
                 return null;
             }
         }
+
+       
 
     }
 }
